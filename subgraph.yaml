@@ -1,0 +1,50 @@
+specVersion: 0.0.1
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: DEX
+    network: goerli
+    source:
+      address: "0xD6a31697eefE202fFc673BbDf58d2f16F168910b"
+      abi: DEX
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - EthToTokenSwapSuccessfull
+        - LiquidityWithdrawSuccessfull
+        - OwnershipTransferred
+        - TokenAddressesSet
+        - TokenToEthSwapSuccessfull
+        - TokensAdded
+        - TokensRemvod
+        - chainLinkPriceFeedAdded
+        - poolCreated
+        - tokenSwappedSuccessfully
+      abis:
+        - name: DEX
+          file: ./abis/DEX.json
+      eventHandlers:
+        - event: EthToTokenSwapSuccessfull(uint256,int256,int256,address)
+          handler: handleEthToTokenSwapSuccessfull
+        - event: LiquidityWithdrawSuccessfull(uint256,uint256,uint256,uint256,address,address)
+          handler: handleLiquidityWithdrawSuccessfull
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: TokenAddressesSet(address[],address)
+          handler: handleTokenAddressesSet
+        - event: TokenToEthSwapSuccessfull(uint256,int256,int256,address)
+          handler: handleTokenToEthSwapSuccessfull
+        - event: TokensAdded(address[],address)
+          handler: handleTokensAdded
+        - event: TokensRemvod(address[],address)
+          handler: handleTokensRemvod
+        - event: chainLinkPriceFeedAdded(address[],address[],address)
+          handler: handlechainLinkPriceFeedAdded
+        - event: poolCreated(indexed uint256,indexed address,uint256,address,indexed uint256,uint256,bool)
+          handler: handlepoolCreated
+        - event: tokenSwappedSuccessfully(uint256,int256,int256,address)
+          handler: handletokenSwappedSuccessfully
+      file: ./src/dex.ts

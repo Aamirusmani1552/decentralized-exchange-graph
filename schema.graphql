@@ -1,0 +1,6 @@
+type ExampleEntity @entity {
+  id: ID!
+  count: BigInt!
+  ethSwapped: BigInt! # uint256
+  tokenReceived: BigInt! # int256
+}
