@@ -1,4 +1,4 @@
-specVersion: 0.0.1
+specVersion: 0.0.4
 schema:
   file: ./schema.graphql
 dataSources:
@@ -8,19 +8,15 @@ dataSources:
     source:
       address: "0xD6a31697eefE202fFc673BbDf58d2f16F168910b"
       abi: DEX
+      startBlock: 7565574
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
         - EthToTokenSwapSuccessfull
         - LiquidityWithdrawSuccessfull
-        - OwnershipTransferred
-        - TokenAddressesSet
         - TokenToEthSwapSuccessfull
-        - TokensAdded
-        - TokensRemvod
-        - chainLinkPriceFeedAdded
         - poolCreated
         - tokenSwappedSuccessfully
       abis:
@@ -31,18 +27,8 @@ dataSources:
           handler: handleEthToTokenSwapSuccessfull
         - event: LiquidityWithdrawSuccessfull(uint256,uint256,uint256,uint256,address,address)
           handler: handleLiquidityWithdrawSuccessfull
-        - event: OwnershipTransferred(indexed address,indexed address)
-          handler: handleOwnershipTransferred
-        - event: TokenAddressesSet(address[],address)
-          handler: handleTokenAddressesSet
         - event: TokenToEthSwapSuccessfull(uint256,int256,int256,address)
           handler: handleTokenToEthSwapSuccessfull
-        - event: TokensAdded(address[],address)
-          handler: handleTokensAdded
-        - event: TokensRemvod(address[],address)
-          handler: handleTokensRemvod
-        - event: chainLinkPriceFeedAdded(address[],address[],address)
-          handler: handlechainLinkPriceFeedAdded
         - event: poolCreated(indexed uint256,indexed address,uint256,address,indexed uint256,uint256,bool)
           handler: handlepoolCreated
         - event: tokenSwappedSuccessfully(uint256,int256,int256,address)

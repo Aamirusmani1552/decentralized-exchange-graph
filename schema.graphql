@@ -1,6 +1,52 @@
-type ExampleEntity @entity {
+type poolCreatedEntity @entity {
   id: ID!
-  count: BigInt!
-  ethSwapped: BigInt! # uint256
-  tokenReceived: BigInt! # int256
+  poolId: BigInt!
+  token: Bytes!
+  amount: BigInt!
+  owner: Bytes!
+  timestamp: BigInt!
+  minLockPeriod: BigInt!
+  active: Boolean!
+}
+
+type EthToTokenSwapSuccessfullEntity @entity {
+  id: ID!
+  ethSwapped: BigInt!
+  tokenReceived: BigInt!
+  transactionFee: BigInt!
+  user: Bytes!
+}
+
+type TokenToEthSwapSuccessfullEntity @entity {
+  id: ID!
+  tokenSwapped: BigInt!
+  tokenReceived: BigInt!
+  transactionFee: BigInt!
+  user: Bytes!
+}
+
+type tokenSwappedSuccessfullyEntity @entity {
+  id: ID!
+  tokenSwapped: BigInt!
+  tokenReceived: BigInt!
+  transactionFee: BigInt!
+  user: Bytes!
+}
+
+type LiquidityWithdrawSuccessfullEntity @entity {
+  id: ID!
+  poolId: BigInt!
+  tokenToRecieve: BigInt!
+  tokenToReceiveWithInterest: BigInt!
+  totalInterestEarned: BigInt!
+  user: Bytes!
+  token: Bytes!
+}
+
+type allTransaction @entity {
+  id: ID!
+  tokenSwapped: BigInt!
+  tokenReceived: BigInt!
+  transactionFee: BigInt!
+  user: Bytes!
 }
